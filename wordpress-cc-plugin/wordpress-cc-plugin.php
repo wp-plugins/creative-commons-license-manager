@@ -2,14 +2,14 @@
 /**
  * @package wordpress-cc-plugin
  * @author Nils Dagsson Moskopp // erlehmann
- * @version 0.6
+ * @version 0.7.3
  */
 /*
 Plugin Name: Creative Commons License Manager
 Plugin URI: http://labs.creativecommons.org/2010/05/24/gsoc-project-introduction-cc-wordpress-plugin/
 Description: The Wordpress interface for managing media is extended to have an option to specify a CC license for uploaded content. When aforementioned content is inserted into an article, RDFa-enriched markup is generated.
 Author: Nils Dagsson Moskopp // erlehmann
-Version: 0.6
+Version: 0.7.3
 Author URI: http://dieweltistgarnichtso.net
 */
 
@@ -81,7 +81,7 @@ function cc_wordpress_admin_checked($key, $value) {
 // generate list of css files
 function cc_wordpress_admin_css_list() {
 
-    $path = WP_PLUGIN_DIR .'/wordpress-cc-plugin/css/';
+    $path = plugin_dir_path(__FILE__) . 'css/';
     $directory = opendir($path);
 
     $html = '';
@@ -97,7 +97,7 @@ function cc_wordpress_admin_css_list() {
                 $html .= cc_wordpress_admin_checked('cc_wordpress_css', $file);
 
                 $html .= '/><i>'. substr($file, 0, -4) .'</i></label>
-    <img src="'. WP_PLUGIN_URL .'/wordpress-cc-plugin/css-preview/'. substr($file, 0, -3) .'png"/>
+    <img src="'. plugins_url('css-preview/', __FILE__). substr($file, 0, -3) .'png"/>
 </li>';
     // maybe use real path editing facilities ? but then, this already works.
             }
@@ -374,7 +374,7 @@ label select {
 
 // add admin menu entry
 function cc_wordpress_plugin_menu() {
-    add_options_page('CC Wordpress', 'CC Wordpress', 8, __FILE__, 'cc_wordpress_admin_page');
+    add_options_page('Creative Commons License Manager', 'CC License Manager', 8, __FILE__, 'cc_wordpress_admin_page');
 }
 
 // add admin pages
@@ -388,7 +388,7 @@ if(is_admin()) {
 // output link to chosen CSS
 function cc_wordpress_add_css() {
     if (get_option('cc_wordpress_css')) {
-        echo '<link rel="stylesheet" href="'. WP_PLUGIN_URL .'/wordpress-cc-plugin/css/'. get_option('cc_wordpress_css') .'" type="text/css"/>';
+        echo '<link rel="stylesheet" href="'. plugins_url('css/', __FILE__) . get_option('cc_wordpress_css') .'" type="text/css"/>';
     }
 
     // show IE a little of the HTML5 goodness
@@ -591,7 +591,7 @@ function cc_wordpress_figure($attachment_id, $size = '', $is_post_thumbnail = fa
 
     $type = substr($post->post_mime_type, 0, 5);
 
-    $url = WP_PLUGIN_URL .'/wordpress-cc-plugin/embed-helper.php?id='. $id;
+    $url = plugins_url('/embed-helper.php?id='. $id, __FILE__);
     $alt = get_post_meta($id, '_wp_attachment_image_alt', true);
 
     if ($type == 'image') {
@@ -660,7 +660,7 @@ SCRIPT;
     $embed_html = '<button onclick="showEmbed(this)">embed</button>';
 
     // add inline style — inefficient, but needed for re-embedding
-    $css = file_get_contents(WP_PLUGIN_URL .'/wordpress-cc-plugin/css/'. get_option('cc_wordpress_css'));
+    $css = file_get_contents(plugins_url('css/'. get_option('cc_wordpress_css'), __FILE__));
     if ($css !== False) {
         $css = str_replace('  ', '', $css);
         $css = str_replace('	', '', $css);
