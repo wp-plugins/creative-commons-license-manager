@@ -3,7 +3,7 @@
 Tags: cc, creativecommons, license, licensing, spreeblick
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 0.7.2
+Stable tag: 0.7.4
 
 == Description ==
 
@@ -17,7 +17,7 @@ The plugin includes a small web server that is able to serve the "Access-Control
 
 A video, with English and German subtitles available, shows [how the plugin is used] [Tutorial].
 
-[Tutorial] http://mirrors.creativecommons.org/movingimages/wordpress-cc-plugin-with-subtitles.ogv
+[Tutorial]: http://mirrors.creativecommons.org/movingimages/wordpress-cc-plugin-with-subtitles.ogv
 
 [1]: http://creativecommons.org/about/licenses/
 
@@ -33,9 +33,9 @@ A video, with English and German subtitles available, shows [how the plugin is u
 
 Caution: Although the plugin may also work with older versions of Wordpress, it is recommended that you use at least Wordpress 3.0. You should also check that your blog's theme serves XHTML content and has a HTML5 doctype.
 
-To install the plugin, move the contents of the wordpress-cc-plugin directory into the plugin directory of your Wordpress installation, then activate the plugin on the plugin manager page.
+To install the plugin, move the directory you found this file in into the plugin directory of your Wordpress installation, then activate the plugin on the plugin manager page.
 
-It is recommended that you choose defaults for license, rights holder and jurisdiction on the "CC Wordpress" page in the administration area.
+It is recommended that you choose defaults for license, rights holder and jurisdiction on the "CC License Manager" page in the administration area.
 
 == Changelog ==
 
